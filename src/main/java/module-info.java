@@ -3,13 +3,12 @@ module com.diego.torresdehanoi {
     requires javafx.fxml;
 
 
-    opens com.diego.torresdehanoi to javafx.fxml;
-    exports com.diego.torresdehanoi.Modelo.Entidades;
-    opens com.diego.torresdehanoi.Modelo.Entidades to javafx.fxml;
-    exports com.diego.torresdehanoi.Model;
-    opens com.diego.torresdehanoi.Model to javafx.fxml;
     exports com.diego.torresdehanoi.Application;
+    exports com.diego.torresdehanoi.Controller;
+    exports com.diego.torresdehanoi.Model;
+    exports com.diego.torresdehanoi.utils;
     opens com.diego.torresdehanoi.Application to javafx.fxml;
-    exports com.diego.torresdehanoi.Controler;
-    opens com.diego.torresdehanoi.Controler to javafx.fxml;
+    opens com.diego.torresdehanoi.Controller to javafx.fxml;
+    opens com.diego.torresdehanoi.Model to javafx.fxml;
+    opens com.diego.torresdehanoi.utils to javafx.fxml;
 }

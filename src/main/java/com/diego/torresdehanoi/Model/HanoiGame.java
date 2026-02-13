@@ -65,9 +65,21 @@ public class HanoiGame {
         return false;
     }
 
+    public void resolver(int n, int origen, int auxiliar, int destino) {
 
-    public boolean resuelto() {
-        // verificar si última torre tiene todos los discos
-        return false;
+        if (n == 1) {
+            mover(origen, destino);
+            return;
+        }
+
+        resolver(n - 1, origen, destino, auxiliar);
+        mover(origen, destino);
+        resolver(n - 1, auxiliar, origen, destino);
     }
+
+
+    public boolean resuelto(int totalDiscos) {
+        return torres[torres.length - 1].size() == totalDiscos;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.diego.torresdehanoi.Controler;
+package com.diego.torresdehanoi.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
