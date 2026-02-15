@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class SceneManager {
 
@@ -16,7 +17,7 @@ public class SceneManager {
         stagePrincipal = stage;
     }
 
-    public static void cambiarEscena(String rutaFXML) {
+/*    public static void cambiarEscena(String rutaFXML) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
             Parent root = loader.load();
@@ -25,7 +26,25 @@ public class SceneManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }*/
+//test
+    public static void cambiarEscena(String rutaFXML, Consumer<Object> controladorInit) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
+            Parent root = loader.load();
+
+            Object controller = loader.getController();
+            controladorInit.accept(controller);
+
+            stagePrincipal.setScene(new Scene(root));
+            stagePrincipal.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public static void cambiarContenido(Pane destino, String rutaFXML) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
@@ -35,4 +54,22 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    //test
+/*    public static <T> T cambiarEscenaConController(String rutaFXML) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
+            Parent root = loader.load();
+
+            stagePrincipal.setScene(new Scene(root));
+            stagePrincipal.show();
+
+            return loader.getController();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }*/
+
 }

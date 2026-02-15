@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: linear-gradient(from 500px 500px to 100px 100px, #3e9892, #0f2a39);
+    -fx-background-color: linear-gradient(from 0% 100% to 100% 0%, #3e9892, #0f2a39);
     -fx-font-family: 'Poppins';
     -fx-text-fill: #b98fc7;
 }
@@ -44,9 +44,20 @@
 
 .sdrContador{
     -fx-color: #0f2a39;
-    -fx-text-fill: #000000;
+    -fx-text-fill: white;
 }
 .sdrContador:hover{
     -fx-color: #1d4e69;
+}
+
+.axis {
+    -fx-tick-label-fill: #56d3ca;
+}
+
+.lblContador{
+    -fx-text-fill: #56d3ca;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-alignment: center;
 }
 

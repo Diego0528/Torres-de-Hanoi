@@ -24,9 +24,9 @@
          </font>
       </Label>
       <Button fx:id="iniciarbtn" layoutX="205.0" layoutY="350.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="154.0" styleClass="btnIniciar" text="Iniciar" />
-      <Slider fx:id="sdrTorres" blockIncrement="1.0" layoutX="181.0" layoutY="152.0" majorTickUnit="1.0" max="5.0" min="3.0" minorTickCount="2" prefHeight="19.0" prefWidth="202.0" showTickLabels="true" snapToTicks="true" styleClass="sdrContador" value="3.0" />
-      <Slider fx:id="sldDiscos" blockIncrement="1.0" layoutX="182.0" layoutY="221.0" majorTickUnit="1.0" max="10.0" min="3.0" minorTickCount="0" prefHeight="19.0" prefWidth="201.0" showTickLabels="true" snapToTicks="true" styleClass="sdrContador" value="5.0" />
-      <Label layoutX="187.0" layoutY="254.0" styleClass="txtInicial" text="Moviminetos Minimos" />
-      <Label fx:id="lbContador" layoutX="245.0" layoutY="292.0" prefHeight="26.0" prefWidth="82.0" />
+      <Slider fx:id="sdrTorres" blockIncrement="1.0" layoutX="181.0" layoutY="152.0" majorTickUnit="1.0" max="5.0" min="3.0" minorTickCount="0" onMouseClicked="#cambioValTorres" prefHeight="19.0" prefWidth="202.0" showTickLabels="true" snapToTicks="true" styleClass="sdrContador" value="3.0" />
+      <Slider fx:id="sldDiscos" blockIncrement="1.0" layoutX="182.0" layoutY="221.0" majorTickUnit="1.0" max="10.0" min="3.0" minorTickCount="0" onMouseClicked="#cambioValDiscos" prefHeight="19.0" prefWidth="201.0" showTickLabels="true" snapToTicks="true" styleClass="sdrContador" value="5.0" />
+      <Label layoutX="187.0" layoutY="254.0" styleClass="txtInicial" text="Movimientos mínimos" />
+      <Label fx:id="lbContador" styleClass="lblContador" layoutX="245.0" layoutY="292.0" prefHeight="26.0" prefWidth="82.0" />
    </children>
 </AnchorPane>
