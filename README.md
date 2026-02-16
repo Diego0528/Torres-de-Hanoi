@@ -111,7 +111,7 @@ Cada movimiento:
 
 ## 📄 Licencia
 
-Este proyecto es de uso educativo y libre para modificación.
+Este proyecto es de uso educativo y libre para modificación siempre que se conserven los créditos al autor original..
 
 ---
 
@@ -120,14 +120,3 @@ Este proyecto es de uso educativo y libre para modificación.
 <img width="563" height="436" alt="image" src="https://github.com/user-attachments/assets/c51715c7-bf9e-4e89-b60e-2fefe1238b5e" />
 <img width="697" height="445" alt="image" src="https://github.com/user-attachments/assets/bc2549aa-8208-441f-953a-ca11c79ab424" />
 <img width="700" height="446" alt="image" src="https://github.com/user-attachments/assets/82562685-4954-420f-97a1-eeaeda0a9373" />
-
-
-
----
-
-Si quieres, en el siguiente mensaje te lo preparo en versión:
-
-* con badges
-* con gifs
-* con capturas organizadas
-* optimizado para reclutadores (portfolio)
