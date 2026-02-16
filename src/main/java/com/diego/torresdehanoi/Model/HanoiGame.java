@@ -6,26 +6,21 @@ import java.util.List;
 public class HanoiGame {
 
     private Torre[] torres;
-
     public int getNumTorres() {
         return numTorres;
     }
-
     public int getNumDiscos() {
         return numDiscos;
     }
 
     private int numTorres;
     private int numDiscos;
-    private int contador;
 
 
     public HanoiGame(int numTorres, int numDiscos) {
 
         this.numTorres = numTorres;
         this.numDiscos = numDiscos;
-        this.contador = 0;
-
 
         // Crear arreglo de torres
         torres = new Torre[numTorres];
@@ -62,7 +57,6 @@ public class HanoiGame {
 
             torres[origen].pop();
             torres[destino].push(discoOrigen);
-            contador++;
             return true;
         }
 
@@ -73,31 +67,12 @@ public class HanoiGame {
 
             torres[origen].pop();
             torres[destino].push(discoOrigen);
-            contador++;
             return true;
         }
 
         return false;
     }
 
-//    public void resolver(int n, int origen, int auxiliar, int destino) {
-//
-//        if (n == 1) {
-//            mover(origen, destino);
-//            return;
-//        }
-//
-//        resolver(n - 1, origen, destino, auxiliar);
-//        mover(origen, destino);
-//        resolver(n - 1, auxiliar, origen, destino);
-//    }
-
-
-    public boolean resuelto(int totalDiscos) {
-        return torres[torres.length - 1].size() == totalDiscos;
-    }
-
-    //Test
     private List<int[]> movimientos = new ArrayList<>();
 
     public List<int[]> getMovimientos() {
@@ -116,6 +91,7 @@ public class HanoiGame {
         resolver(n - 1, auxiliar, origen, destino);
     }
 
-
-
+    public boolean resuelto(int totalDiscos) {
+        return torres[torres.length - 1].size() == totalDiscos;
+    }
 }

@@ -17,17 +17,6 @@ public class SceneManager {
         stagePrincipal = stage;
     }
 
-/*    public static void cambiarEscena(String rutaFXML) {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
-            Parent root = loader.load();
-            stagePrincipal.setScene(new Scene(root));
-            stagePrincipal.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-//test
     public static void cambiarEscena(String rutaFXML, Consumer<Object> controladorInit) {
 
         try {
@@ -55,21 +44,5 @@ public class SceneManager {
         }
     }
 
-    //test
-/*    public static <T> T cambiarEscenaConController(String rutaFXML) {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(rutaFXML));
-            Parent root = loader.load();
-
-            stagePrincipal.setScene(new Scene(root));
-            stagePrincipal.show();
-
-            return loader.getController();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }*/
 
 }

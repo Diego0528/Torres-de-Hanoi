@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 
 
 public class MainController {
-//Objetos FXML
+
     @FXML
     private Button iniciarbtn;
 

@@ -1,5 +1,7 @@
 package com.diego.torresdehanoi.Controller;
 import com.diego.torresdehanoi.Model.HanoiGame;
+import com.diego.torresdehanoi.utils.Paths;
+import com.diego.torresdehanoi.utils.SceneManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
@@ -12,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.scene.layout.AnchorPane;
 import java.util.*;
+
+import javax.swing.*;
 
 public class GameController {
 
@@ -28,12 +32,11 @@ public class GameController {
     private final List<Stack<Rectangle>> torresVisuales = new ArrayList<>();
     private final Queue<int[]> colaMovimientos = new LinkedList<>();
 
-    private double anchoTorre = 10;
-    private double altoTorre = 200;
-    private double baseY = 360;
+    private final double anchoTorre = 10;
+    private final double altoTorre = 200;
+    private final double baseY = 360;
     int nMov = 0;
 
-    // 🔹 ESTE MÉTODO LO LLAMAS DESDE SceneManager
     public void initJuego(int torres, int discos) {
 
         this.numTorres = torres;
@@ -44,13 +47,13 @@ public class GameController {
         crearTorres();
         crearDiscos();
 
-        generarMovimientos(numDiscos, 0, 1, 2);
+        juego.resolver(numDiscos, 0, numTorres - 2, numTorres - 1);
+
+        colaMovimientos.addAll(juego.getMovimientos());
+
         ejecutarAnimacion();
     }
 
-    // =========================================================
-    // CREAR TORRES
-    // =========================================================
     private void crearTorres() {
 
         double separacion = root.getPrefWidth() / (numTorres + 1);
@@ -67,9 +70,6 @@ public class GameController {
         }
     }
 
-    // =========================================================
-    // CREAR DISCOS
-    // =========================================================
     private void crearDiscos() {
 
         double anchoMax = 120;
@@ -84,9 +84,11 @@ public class GameController {
 
             disco.setFill(colorRandom());
 
-            Stack<Rectangle> torre0 = torresVisuales.get(0);
+            Stack<Rectangle> torre0 = torresVisuales.getFirst();
 
-            double xCentro = root.getPrefWidth() / (numTorres + 1);
+            double separacion = root.getPrefWidth() / (numTorres + 1);
+            double xCentro = separacion * 1;
+
 
             disco.setLayoutX(xCentro - disco.getWidth() / 2);
             disco.setLayoutY(baseY - (torre0.size() + 1) * alto);
@@ -100,26 +102,6 @@ public class GameController {
         return Color.color(Math.random(), Math.random(), Math.random());
     }
 
-    // =========================================================
-    // GENERAR MOVIMIENTOS (RECURSIVO)
-    // =========================================================
-    private void generarMovimientos(int n, int origen, int auxiliar, int destino) {
-
-        if (n == 1) {
-            colaMovimientos.add(new int[]{origen, destino});
-            return;
-        }
-
-        generarMovimientos(n - 1, origen, destino, auxiliar);
-        colaMovimientos.add(new int[]{origen, destino});
-        generarMovimientos(n - 1, auxiliar, origen, destino);
-
-
-    }
-
-    // =========================================================
-    // EJECUTAR ANIMACIÓN
-    // =========================================================
     private void ejecutarAnimacion() {
 
         Timeline timeline = new Timeline(
@@ -131,15 +113,17 @@ public class GameController {
 
     }
 
-    // =========================================================
-    // MOVER DISCO VISUAL + MODELO
-    // =========================================================
     private void ejecutarMovimiento() {
 
         int[] mov = colaMovimientos.poll();
 
+        assert mov != null;
         int origen = mov[0];
         int destino = mov[1];
+
+        if (!juego.mover(origen, destino)) {
+            return;
+        }
 
         Stack<Rectangle> torreOrigen = torresVisuales.get(origen);
         Stack<Rectangle> torreDestino = torresVisuales.get(destino);
@@ -154,8 +138,30 @@ public class GameController {
 
         torreDestino.push(disco);
 
-        juego.mover(origen, destino);
         nMov++;
         lblContador.setText("Numero de Moviminetos: "+nMov);
+
+        if(juego.resuelto(numDiscos)) {
+            javafx.scene.control.Button btnRegresar = new javafx.scene.control.Button("Regresar");
+            root.getChildren().add(btnRegresar);
+
+            btnRegresar.setStyle("""
+                    -fx-background-color: #3e9892;
+                    -fx-text-fill: #1a0b46;
+                    -fx-font-weight: bold;
+                    -fx-font-size: 18px;
+                    -fx-background-radius: 8;
+                    -fx-padding: 10 40;
+                    -fx-effect: dropshadow(three-pass-box, rgba(138,43,226,0.4), 20, 0, 0, 0);""");
+
+            btnRegresar.setLayoutX(275);
+            btnRegresar.setLayoutY(380);
+
+            btnRegresar.setOnAction(e -> regresar());
+
+        }
+    }
+    private void regresar(){
+        SceneManager.cambiarEscena(Paths.MainView, controller -> {});
     }
 }

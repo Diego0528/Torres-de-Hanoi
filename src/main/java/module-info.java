@@ -1,6 +1,7 @@
 module com.diego.torresdehanoi {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     exports com.diego.torresdehanoi.Application;
