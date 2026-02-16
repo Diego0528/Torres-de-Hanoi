@@ -2,6 +2,7 @@ package com.diego.torresdehanoi.Controller;
 import com.diego.torresdehanoi.Model.HanoiGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ public class GameController {
 
     @FXML
     private AnchorPane root;
+    @FXML
+    private Label lblContador;
 
     private HanoiGame juego;
 
@@ -27,7 +30,8 @@ public class GameController {
 
     private double anchoTorre = 10;
     private double altoTorre = 200;
-    private double baseY = 320;
+    private double baseY = 360;
+    int nMov = 0;
 
     // 🔹 ESTE MÉTODO LO LLAMAS DESDE SceneManager
     public void initJuego(int torres, int discos) {
@@ -71,7 +75,7 @@ public class GameController {
         double anchoMax = 120;
         double alto = 20;
 
-        for (int i = numDiscos; i >= 1; i--) {
+        for (int i = 0; i < numDiscos; i++) {
 
             Rectangle disco = new Rectangle(
                     anchoMax - (i * 10),
@@ -109,6 +113,8 @@ public class GameController {
         generarMovimientos(n - 1, origen, destino, auxiliar);
         colaMovimientos.add(new int[]{origen, destino});
         generarMovimientos(n - 1, auxiliar, origen, destino);
+
+
     }
 
     // =========================================================
@@ -122,6 +128,7 @@ public class GameController {
 
         timeline.setCycleCount(colaMovimientos.size());
         timeline.play();
+
     }
 
     // =========================================================
@@ -148,5 +155,7 @@ public class GameController {
         torreDestino.push(disco);
 
         juego.mover(origen, destino);
+        nMov++;
+        lblContador.setText("Numero de Moviminetos: "+nMov);
     }
 }
