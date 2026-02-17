@@ -45,7 +45,7 @@ El proyecto permite:
 ### 1️⃣ Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU-USUARIO/torres-de-hanoi-javafx.git
+git clone https://github.com/Diego0528/torres-de-hanoi-javafx.git
 ```
 
 ### 2️⃣ Abrir en tu IDE
